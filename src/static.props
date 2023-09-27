@@ -6,11 +6,12 @@
     <_PropertySheetDisplayName>rlStaticLib</_PropertySheetDisplayName>
     <OutDir>$(SolutionDir)lib\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)tmp\$(ProjectName)\$(Configuration)\</IntDir>
+    <TargetName>$(SolutionName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
       <AdditionalIncludeDirectories>$(SolutionDir)include;$(RobinLeApps)\include</AdditionalIncludeDirectories>
-	  <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp20</LanguageStandard>
     </ClCompile>
     <Lib>

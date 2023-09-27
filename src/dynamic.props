@@ -6,6 +6,7 @@
     <_PropertySheetDisplayName>rlDynamicLib</_PropertySheetDisplayName>
     <OutDir>$(SolutionDir)lib\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)tmp\$(ProjectName)\$(Configuration)\</IntDir>
+    <TargetName>$(SolutionName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
