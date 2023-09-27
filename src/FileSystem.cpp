@@ -6,7 +6,7 @@
 
 #ifdef _WIN32
 #include "include/IncludeWindows.h"
-#include "include/UnicodeString.hpp"
+#include <rlSystem/WindowsUnicodeString.hpp>
 
 #include <ShlObj_core.h>
 #endif

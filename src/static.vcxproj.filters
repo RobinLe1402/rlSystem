@@ -21,7 +21,7 @@
     <ClCompile Include="FileSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UnicodeString.cpp">
+    <ClCompile Include="WindowsUnicodeString.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,11 +29,11 @@
     <ClInclude Include="..\include\rlSystem\FileSystem.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\UnicodeString.hpp">
-      <Filter>Header Files\Private</Filter>
-    </ClInclude>
     <ClInclude Include="include\IncludeWindows.h">
       <Filter>Header Files\Private</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\rlSystem\WindowsUnicodeString.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

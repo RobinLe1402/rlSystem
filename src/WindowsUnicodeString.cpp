@@ -1,4 +1,6 @@
-#include "include/UnicodeString.hpp"
+#ifdef _WIN32
+
+#include <rlSystem/WindowsUnicodeString.hpp>
 
 #include <locale>
 
@@ -20,8 +22,6 @@ namespace
 
 	};
 }
-
-#ifdef _WIN32
 
 #include "include/IncludeWindows.h"
 

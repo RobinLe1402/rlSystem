@@ -145,12 +145,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="FileSystem.cpp" />
-    <ClCompile Include="UnicodeString.cpp" />
+    <ClCompile Include="WindowsUnicodeString.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\rlSystem\FileSystem.hpp" />
+    <ClInclude Include="..\include\rlSystem\WindowsUnicodeString.hpp" />
     <ClInclude Include="include\IncludeWindows.h" />
-    <ClInclude Include="include\UnicodeString.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
