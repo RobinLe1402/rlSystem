@@ -1,0 +1,22 @@
+#ifndef RLSYSTEM_INCLUDEWINDOWS
+#define RLSYSTEM_INCLUDEWINDOWS
+
+#ifdef _WIN32
+
+
+
+
+
+#define WIN32_MEAN_AND_LEAN
+#define NOMINMAX
+#include <Windows.h>
+#undef WIN32_MEAN_AND_LEAN
+#undef NOMINMAX
+
+
+
+
+
+#endif // _WIN32
+
+#endif // RLSYSTEM_INCLUDEWINDOWS
