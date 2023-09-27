@@ -1,3 +1,4 @@
+#include <rlSystem/AppExecution.hpp>
 #include <rlSystem/FileSystem.hpp>
 
 int main(int argc, char* argv[])
@@ -67,7 +68,10 @@ int main(int argc, char* argv[])
 	printf("The extension of \"%s\" is \"%s\".\n",
 		reinterpret_cast<const char *>(szFilename),
 		reinterpret_cast<const char *>(rlSystem::Path::GetFileExtension(szFilename).c_str()));
+
+
 	
+	rlSystem::RunApp(u8"cmd.exe", u8"/C \"pause\"", 0, true, 0, false);
 
 
 	return 0;

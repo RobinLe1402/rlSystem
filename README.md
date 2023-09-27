@@ -3,4 +3,5 @@
 
 This repo contains the static library `rlSystem` which offers OS-dependent functionality:
 * File system interaction - change current directory, delete/move files/directories, ...
-* (Windows only) Convert between UTF-8 and the operating system's string encoding
+* App execution - run an app, synchronously or asynchronously
+* (Windows only) Conversion between UTF-8 and the operating system's string encoding

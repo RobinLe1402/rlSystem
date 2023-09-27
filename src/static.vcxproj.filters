@@ -24,6 +24,9 @@
     <ClCompile Include="WindowsUnicodeString.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="AppExecution.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\include\rlSystem\FileSystem.hpp">
@@ -33,6 +36,9 @@
       <Filter>Header Files\Private</Filter>
     </ClInclude>
     <ClInclude Include="..\include\rlSystem\WindowsUnicodeString.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\rlSystem\AppExecution.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
