@@ -58,6 +58,22 @@ namespace rlSystem
 			}
 		}
 
+		bool Copy(const char8_t *szOrigFilePath, const char8_t *szCopyFilePath)
+		{
+			if (!Exists(szOrigFilePath))
+				return false;
+
+			try
+			{
+				fs::copy(szOrigFilePath, szCopyFilePath);
+				return true;
+			}
+			catch (...)
+			{
+				return false;
+			}
+		}
+
 		size_t GetSize(const char8_t *szFilePath)
 		{
 			std::ifstream file(
@@ -125,6 +141,22 @@ namespace rlSystem
 			try
 			{
 				fs::rename(szOrigDirPath, szNewDirPath);
+				return true;
+			}
+			catch (...)
+			{
+				return false;
+			}
+		}
+
+		bool Copy(const char8_t *szOrigDirPath, const char8_t *szCopyDirPath)
+		{
+			if (!Exists(szOrigDirPath))
+				return false;
+
+			try
+			{
+				fs::copy(szOrigDirPath, szCopyDirPath);
 				return true;
 			}
 			catch (...)
@@ -301,6 +333,22 @@ if (bRecursive)
 			try
 			{
 				fs::rename(szOrigPath, szNewPath);
+				return true;
+			}
+			catch (...)
+			{
+				return false;
+			}
+		}
+
+		bool Copy(const char8_t *szOrigPath, const char8_t *szCopyPath)
+		{
+			if (!Exists(szOrigPath))
+				return false;
+
+			try
+			{
+				fs::copy(szOrigPath, szCopyPath);
 				return true;
 			}
 			catch (...)

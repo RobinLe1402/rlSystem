@@ -22,7 +22,7 @@ namespace rlSystem
 		/// <summary>Delete a file.</summary>
 		/// <returns>
 		/// Was <c>szFilePath</c> deleted?<para/>
-		/// Always returns <c>false</c> if <c>szFilePath</c> is not a file.
+		/// Always returns <c>false</c> if <c>szFilePath</c> does not exist as a file.
 		/// </return>
 		bool Delete(const char8_t *szFilePath);
 
@@ -31,9 +31,18 @@ namespace rlSystem
 		/// <param name="szNewFilePath">The new path of the file.</param>
 		/// <returns>
 		/// Was the file successfully moved?<para/>
-		/// Always returns <c>false</c> if <c>szOrigFilePath</c> is not a file.
+		/// Always returns <c>false</c> if <c>szOrigFilePath</c> does not exist as file.
 		/// </returns>
 		bool Move(const char8_t *szOrigFilePath, const char8_t *szNewFilePath);
+
+		/// <summary>Copy a file.</summary>
+		/// <param name="szOrigFilePath">The path of the original file.</param>
+		/// <param name="szCopyFilePath">The path of the copied file.</param>
+		/// <returns>
+		/// Was the file successfully copied?<para/>
+		/// Always returns <c>false</c> if <c>szOrigFilePath</c> does not exist as a file.
+		/// </returns>
+		bool Copy(const char8_t *szOrigFilePath, const char8_t *szCopyFilePath);
 
 		/// <summary>Get the total size of a file, in bytes.</summary>
 		/// <param name="szFilePath">The path of the file to get the filesize of.</param>
@@ -46,7 +55,7 @@ namespace rlSystem
 		/// <summary>Is a file readonly?</summary>
 		/// <param name="szFilePath">The path to a file.</param>
 		/// <returns>
-		/// If <c>szFilePath</c> doesn't exist as a file, the return value is always <c>false</c>.
+		/// If <c>szFilePath</c> does not exist as a file, the return value is always <c>false</c>.
 		/// </returns>
 		bool IsReadonly(const char8_t *szFilePath);
 
@@ -74,7 +83,7 @@ namespace rlSystem
 		/// </param>
 		/// <returns>
 		/// Was <c>szDirPath</c> deleted?<para/>
-		/// Always returns <c>false</c> if <c>szDirPath</c> is not a directory.
+		/// Always returns <c>false</c> if <c>szDirPath</c> does not exist as directory.
 		/// </returns>
 		bool Delete(const char8_t *szDirPath);
 
@@ -83,9 +92,18 @@ namespace rlSystem
 		/// <param name="szNewDirPath">The new path of the directory.</param>
 		/// <returns>
 		/// Was the directory successfully moved?<para/>
-		/// Always returns <c>false</c> if <c>szOrigPath</c> is not a directory.
+		/// Always returns <c>false</c> if <c>szOrigPath</c> does not exist as directory.
 		/// </returns>
 		bool Move(const char8_t *szOrigDirPath, const char8_t *szNewDirPath);
+
+		/// <summary>Copy a directory.</summary>
+		/// <param name="szOrigDirPath">The path of the original directory.</param>
+		/// <param name="szCopyDirPath">The path of the copied directory.</param>
+		/// <returns>
+		/// Was the directory successfully copied?<para/>
+		/// Always returns <c>false</c> if <c>szOrigDirPath</c> is does not exist as a directory.
+		/// </returns>
+		bool Copy(const char8_t *szOrigDirPath, const char8_t *szCopyDirPath);
 
 		/// <summary>Get a list of files in a directory.</summary>
 		/// <param name="szDirPath">The path of the directory to search.</param>
@@ -121,7 +139,7 @@ namespace rlSystem
 		/// <summary>Is a directory readonly?</summary>
 		/// <param name="szDirPath">The path to a directory.</param>
 		/// <returns>
-		/// If <c>szDirPath</c> doesn't exist as a directory, the return value is always
+		/// If <c>szDirPath</c> does not exist as a directory, the return value is always
 		/// <c>false</c>.<para/>
 		/// This function tests for writability by creating an empty test file. Please note that
 		/// it's possible you have permission to create files in this directory, but lack permission
@@ -164,6 +182,15 @@ namespace rlSystem
 		/// <returns>Was the file/directory successfully moved?</returns>
 		bool Move(const char8_t *szOrigPath, const char8_t *szNewPath);
 
+		/// <summary>Copy a file or directory.</summary>
+		/// <param name="szOrigPath">The path of the original file or directory.</param>
+		/// <param name="szCopyPath">The path of the copied file or directory.</param>
+		/// <returns>
+		/// Was the file or directory successfully copied?<para/>
+		/// Always returns <c>false</c> if <c>szOrigPath</c> does not exist as a file or directory.
+		/// </returns>
+		bool Copy(const char8_t *szOrigPath, const char8_t *szCopyPath);
+
 		/// <summary>Is a path hidden?</summary>
 		/// <param name="szPath">The path of the file/directory to check.</param>
 		bool IsHidden(const char8_t *szPath);
@@ -190,14 +217,14 @@ namespace rlSystem
 		/// </summary>
 		/// <param name="szFilePath">A filepath.</param>
 		/// <returns>
-		/// If <c>szFilePath</c> doesn't contain a file extension, an empty string is returned.
+		/// If <c>szFilePath</c> does not contain a file extension, an empty string is returned.
 		/// </returns>
 		std::u8string GetFileExtension(const char8_t *szFilePath);
 
 		/// <summary>
 		/// Replace the file extension (everything after and including the last occurence of a
 		/// period).<para/>
-		/// If the given path doesn't contain a file extension, the given extension is appended.
+		/// If the given path does not contain a file extension, the given extension is appended.
 		/// </summary>
 		/// <param name="szFilePath">A filepath.</param>
 		/// <param name="szExt">
