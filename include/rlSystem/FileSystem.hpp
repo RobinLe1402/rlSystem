@@ -63,7 +63,7 @@ namespace rlSystem
 		/// The path of the directory to create.<para/>
 		/// If parent directories also don't exist, an attempt will be made to create those as well.
 		/// </param>
-		/// <param name="bHidden">Should the directory be hidden?</param>
+		/// <param name="bHidden">Should the (deepest level) directory be hidden?</param>
 		/// <returns>Was the directory successfully created?</returns>
 		bool Create(const char8_t *szDirPath, bool bHidden = false);
 
