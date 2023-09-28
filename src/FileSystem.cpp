@@ -173,7 +173,10 @@ namespace rlSystem
 		)
 		{
 			const auto dirpath = fs::path(szDirPath);
-			const auto flags   = bRegexCaseSensitive ? 0 : std::regex_constants::icase;
+			const std::regex_constants::syntax_option_type flags =
+				bRegexCaseSensitive
+				? std::regex_constants::ECMAScript
+				: std::regex_constants::icase;
 
 			std::regex pattern;
 			if (szRegexFilename && *szRegexFilename)
@@ -220,7 +223,10 @@ namespace rlSystem
 		)
 		{
 			const auto dirpath = fs::path(szDirPath);
-			const auto flags   = bRegexCaseSensitive ? 0 : std::regex_constants::icase;
+			const std::regex_constants::syntax_option_type flags =
+				bRegexCaseSensitive
+				? std::regex_constants::ECMAScript
+				: std::regex_constants::icase;
 
 			std::regex pattern;
 			if (szRegexDirname && *szRegexDirname)
