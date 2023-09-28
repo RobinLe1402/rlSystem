@@ -1,6 +1,7 @@
 #include <rlSystem/FileSystem.hpp>
 
 #include <filesystem>
+#include <fstream>
 #include <iterator>
 #include <regex>
 
@@ -55,6 +56,22 @@ namespace rlSystem
 			{
 				return false;
 			}
+		}
+
+		size_t GetSize(const char8_t *szFilePath)
+		{
+			std::ifstream file(
+#ifdef _WIN32
+				str::ToOS(szFilePath).c_str(),
+#else
+				reinterpret_cast<const char *>(szFilePath),
+#endif
+				std::ios::ate | std::ios::binary);
+
+			if (file)
+				return file.tellg();
+			else
+				return 0;
 		}
 
 	}

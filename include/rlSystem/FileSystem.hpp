@@ -35,6 +35,14 @@ namespace rlSystem
 		/// </returns>
 		bool Move(const char8_t *szOrigFilePath, const char8_t *szNewFilePath);
 
+		/// <summary>Get the total size of a file, in bytes.</summary>
+		/// <param name="szFilePath">The path of the file to get the filesize of.</param>
+		/// <returns>
+		/// If the function succeeds, it returns the size of the file, in bytes.<para/>
+		/// If the function fails, it returns zero.
+		/// </returns>
+		size_t GetSize(const char8_t *szFilePath);
+
 	}
 
 	namespace Directory
