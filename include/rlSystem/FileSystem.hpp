@@ -117,6 +117,7 @@ namespace rlSystem
 		std::vector<std::u8string> GetFiles(
 			const char8_t *szDirPath,
 			const char8_t *szRegexFilename,
+			      bool     bRegexCaseSensitive,
 			      bool     bRecursive
 		);
 
@@ -133,6 +134,7 @@ namespace rlSystem
 		std::vector<std::u8string> GetDirectories(
 			const char8_t *szDirPath,
 			const char8_t *szRegexDirname,
+			      bool     bRegexCaseSensitive,
 			      bool     bRecursive
 		);
 

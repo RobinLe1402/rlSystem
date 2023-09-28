@@ -168,15 +168,18 @@ namespace rlSystem
 		std::vector<std::u8string> GetFiles(
 			const char8_t *szDirPath,
 			const char8_t *szRegexFilename,
+			      bool     bRegexCaseSensitive,
 				  bool     bRecursive
 		)
 		{
 			const auto dirpath = fs::path(szDirPath);
+			const auto flags   = bRegexCaseSensitive ? 0 : std::regex_constants::icase;
+
 			std::regex pattern;
 			if (szRegexFilename && *szRegexFilename)
-				pattern = reinterpret_cast<const char *>(szRegexFilename);
+				pattern = std::regex(reinterpret_cast<const char *>(szRegexFilename), flags);
 			else
-				pattern = ".*";
+				pattern = std::regex(".*", flags);
 
 			std::vector<std::u8string> oResult;
 
@@ -189,7 +192,8 @@ namespace rlSystem
 					if (bRecursive)
 					{
 						auto oResultSubdir =
-							GetFiles(item.path().u8string().c_str(), szRegexFilename, true);
+							GetFiles(item.path().u8string().c_str(), szRegexFilename,
+								bRegexCaseSensitive, true);
 						std::move(oResultSubdir.begin(), oResultSubdir.end(),
 							std::back_inserter(oResult));
 					}
@@ -211,15 +215,18 @@ namespace rlSystem
 		std::vector<std::u8string> GetDirectories(
 			const char8_t *szDirPath,
 			const char8_t *szRegexDirname,
+			      bool     bRegexCaseSensitive,
 				  bool     bRecursive
 		)
 		{
 			const auto dirpath = fs::path(szDirPath);
+			const auto flags   = bRegexCaseSensitive ? 0 : std::regex_constants::icase;
+
 			std::regex pattern;
 			if (szRegexDirname && *szRegexDirname)
-				pattern = reinterpret_cast<const char *>(szRegexDirname);
+				pattern = std::regex(reinterpret_cast<const char *>(szRegexDirname), flags);
 			else
-				pattern = ".*";
+				pattern = std::regex(".*", flags);
 
 			std::vector<std::u8string> oResult;
 
@@ -237,7 +244,7 @@ namespace rlSystem
 if (bRecursive)
 {
 	auto oResultSubdir =
-		GetDirectories(item.path().u8string().c_str(), szRegexDirname, true);
+		GetDirectories(item.path().u8string().c_str(), szRegexDirname, bRegexCaseSensitive, true);
 	std::move(oResultSubdir.begin(), oResultSubdir.end(),
 		std::back_inserter(oResult));
 }
