@@ -74,6 +74,22 @@ namespace rlSystem
 				return 0;
 		}
 
+		bool IsReadonly(const char8_t *szFilePath)
+		{
+			if (!Exists(szFilePath))
+				return false;
+
+			std::ofstream file(
+#ifdef _WIN32
+				str::ToOS(szFilePath).c_str(),
+#else
+				reinterpret_cast<const char *>(szFilePath),
+#endif
+				std::ios::binary | std::ios::app);
+
+			return !file;
+		}
+
 	}
 
 	namespace Directory
@@ -197,6 +213,49 @@ if (bRecursive)
 			}
 
 			return oResult;
+		}
+
+		bool IsReadonly(const char8_t *szDirPath)
+		{
+			if (!Exists(szDirPath))
+				return false;
+
+			const auto sBasePath = Path::IncludeTrailingDelim(szDirPath) + u8"testfile_";
+
+			std::u8string sTestfilePath;
+			sTestfilePath.reserve(sBasePath.length() + sizeof(unsigned) * 2);
+
+			srand((unsigned)time(NULL));
+			do
+			{
+				unsigned iRand = (unsigned)rand();
+
+				sTestfilePath = sBasePath;
+
+				constexpr char8_t cHex[] = u8"0123456789ABCDEF";
+
+				for (int i = 0; i < 8; ++i)
+				{
+					sTestfilePath += cHex[iRand & 0xF];
+					iRand >>= 4;
+				}
+			} while (Path::Exists(sTestfilePath.c_str()));
+			
+			
+#ifdef _WIN32
+			std::ofstream file(str::ToOS(sTestfilePath.c_str()).c_str());
+#else
+			std::ofstream file(reinterpret_cast<const char *>(sTestfilePath.c_str()));
+#endif
+
+			bool bResult = !file;
+			if (file)
+			{
+				file.close();
+				File::Delete(sTestfilePath.c_str());
+			}
+
+			return bResult;
 		}
 
 	}
@@ -330,6 +389,35 @@ if (bRecursive)
 			return path.replace_extension(szExt).u8string();
 		}
 
+		std::u8string IncludeTrailingDelim(const char8_t *szPath)
+		{
+			std::u8string sResult = szPath;
+#ifdef _WIN32 // Windows accepts both / and \ as path delimiters.
+			if (!sResult.ends_with('/') && !sResult.ends_with('\\'))
+#else // everyone else uses / exclusively.
+			if (!sResult.ends_with('/'))
+#endif
+				sResult += Delimiter;
+
+			return sResult;
+		}
+
+		std::u8string ExcludeTrailingDelim(const char8_t *szPath)
+		{
+			std::u8string sResult = szPath;
+
+#ifdef _WIN32 // Windows accepts both / and \ as path delimiters.
+			while (sResult.ends_with('/') || sResult.ends_with('\\'))
+#else //  everyone else uses / exclusively.
+			while (sResult.ends_with('/'))
+#endif
+			{
+				sResult.pop_back();
+			}
+
+			return sResult;
+		}
+
 		std::u8string GetName(const char8_t *szPath)
 		{
 			std::u8string sPath = szPath;
@@ -425,6 +513,22 @@ if (bRecursive)
 
 #endif
 		}
+
+#ifdef _WIN32
+		std::u8string Expand(const char8_t *szPath)
+		{
+			const auto sPath = str::ToOS(szPath);
+
+			const DWORD dwSize = ExpandEnvironmentStringsW(sPath.c_str(), NULL, 0);
+			if (dwSize <= 1)
+				return {};
+
+			str::OSString sResult(dwSize - 1, 0);
+			ExpandEnvironmentStringsW(sPath.c_str(), sResult.data(), dwSize);
+
+			return str::FromOS(sResult.c_str());
+		}
+#endif
 
 	}
 

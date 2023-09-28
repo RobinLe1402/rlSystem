@@ -43,6 +43,13 @@ namespace rlSystem
 		/// </returns>
 		size_t GetSize(const char8_t *szFilePath);
 
+		/// <summary>Is a file readonly?</summary>
+		/// <param name="szFilePath">The path to a file.</param>
+		/// <returns>
+		/// If <c>szFilePath</c> doesn't exist as a file, the return value is always <c>false</c>.
+		/// </returns>
+		bool IsReadonly(const char8_t *szFilePath);
+
 	}
 
 	namespace Directory
@@ -110,6 +117,17 @@ namespace rlSystem
 			const char8_t *szRegexDirname,
 			      bool     bRecursive
 		);
+
+		/// <summary>Is a directory readonly?</summary>
+		/// <param name="szDirPath">The path to a directory.</param>
+		/// <returns>
+		/// If <c>szDirPath</c> doesn't exist as a directory, the return value is always
+		/// <c>false</c>.<para/>
+		/// This function tests for writability by creating an empty test file. Please note that
+		/// it's possible you have permission to create files in this directory, but lack permission
+		/// to delete them, in which case this test file won't be deleted.
+		/// </returns>
+		bool IsReadonly(const char8_t *szDirPath);
 
 	}
 
@@ -188,6 +206,20 @@ namespace rlSystem
 		/// </param>
 		std::u8string SetFileExtension(const char8_t *szFilePath, const char8_t *szExt);
 
+		/// <summary>
+		/// Make sure a string ends with a path delimiter ("/" or, under Windows, "\").
+		/// </summary>
+		/// <param name="szPath">A string that may or may not end on a path delimiter.</param>
+		/// <returns><c>szPath</c>, but it's guaranteed to end with a path delimiter.</returns>
+		std::u8string IncludeTrailingDelim(const char8_t *szPath);
+
+		/// <summary>
+		/// Remove all path delimiters ("/" or, under Windows, "\") at the end of a string.
+		/// </summary>
+		/// <param name="szPath">A string that may or may not end on a path delimiter.</param>
+		/// <returns><c>szPath</c>, but it's guaranteed to not end with a path delimiter.</returns>
+		std::u8string ExcludeTrailingDelim(const char8_t *szPath);
+
 		/// <summary>Extract the name of the file/deepest level directory from a path.</summary>
 		/// <param name="szPath">
 		/// The path of a file or directory. Trailing slashes are ignored.
@@ -201,6 +233,20 @@ namespace rlSystem
 		/// On Windows, the return value is <c>szPath</c>, but with the actual casing.
 		/// </returns>
 		std::u8string GetCased(const char8_t *szPath);
+
+#ifdef _WIN32
+		/// <summary>
+		/// Expand the environment variables in a string.<para/>
+		/// Note that the other functions that access the file system don't resolve environment
+		/// variables. So if you want to use a path with environment variables, use this function to
+		/// resolve them first.
+		/// </summary>
+		/// <param name="szPath">A string with or without environment variables.</param>
+		/// <returns>
+		/// If the function fails, it returns an empty string.
+		/// </returns>
+		std::u8string Expand(const char8_t *szPath);
+#endif
 
 	}
 
