@@ -13,7 +13,7 @@ portable and also contains some Linux-specific code.
 However, to compile for a platform other than Windows, you'll have to either remove some functions
 or add an implementation for your platform.
 
-> [!INFO]
+> [!NOTE]
 > Whenever a function is not implemented for your platform, the following preprocessor directive
 > becomes active:
 > 
