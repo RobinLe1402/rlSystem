@@ -224,8 +224,7 @@ namespace rlSystem
 		std::u8string GetFileExtension(const char8_t *szFilePath);
 
 		/// <summary>
-		/// Replace the file extension (everything after and including the last occurence of a
-		/// period).<para/>
+		/// Replace the file extension (everything after the last occurence of a period).<para/>
 		/// If the given path does not contain a file extension, the given extension is appended.
 		/// </summary>
 		/// <param name="szFilePath">A filepath.</param>
