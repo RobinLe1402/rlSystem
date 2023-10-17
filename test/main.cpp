@@ -72,6 +72,15 @@ int main(int argc, char* argv[])
 	else
 		printf("  SUCCESS.\n\n");
 
+	printf("Trying to change the file extension...\n");
+	if (rlSystem::Path::SetFileExtension(u8R"PATH(C:\Test.txt)PATH", u8"a") !=
+		u8R"PATH(C:\Test.a)PATH")
+	{
+		printf("  FAIL.\n\n");
+		return 1;
+	}
+	printf("  SUCCESS.\n\n");
+
 
 
 	printf("\n");
