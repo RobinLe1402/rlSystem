@@ -23,7 +23,7 @@ namespace rlSystem
 		/// <returns>
 		/// Was <c>szFilePath</c> deleted?<para/>
 		/// Always returns <c>false</c> if <c>szFilePath</c> does not exist as a file.
-		/// </return>
+		/// </returns>
 		bool Delete(const char8_t *szFilePath);
 
 		/// <summary>Move a file to a different path.</summary>
