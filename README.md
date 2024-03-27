@@ -17,4 +17,6 @@ or add an implementation for your platform.
 > Whenever a function is not implemented for your platform, the following preprocessor directive
 > becomes active:
 > 
-> `#error "Not implemented"`
+> ```cpp
+#error "Not implemented"
+```
