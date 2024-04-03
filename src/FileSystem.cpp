@@ -409,6 +409,10 @@ if (bRecursive)
 #endif
 		}
 
+		bool IsAbsolute(const char8_t *szPath) { return fs::path(szPath).is_absolute(); }
+
+		bool IsRelative(const char8_t *szPath) { return fs::path(szPath).is_relative(); }
+
 		std::u8string Absolute(const char8_t *szPathRelative)
 		{
 			return fs::absolute(szPathRelative).u8string();

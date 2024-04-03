@@ -201,6 +201,14 @@ namespace rlSystem
 		/// <param name="szPath">The path of the file/directory to hide/show.</param>
 		bool SetHidden(const char8_t *szPath, bool bHidden = true);
 
+		/// <summary>Is a path absolute?</summary>
+		/// <param name="szPath">The path of a file/directory.</param>
+		bool IsAbsolute(const char8_t *szPath);
+
+		/// <summary>Is a path relative?</summary>
+		/// <param name="szPath">The path of a file/directory.</param>
+		bool IsRelative(const char8_t *szPath);
+
 		/// <summary>Convert a relative path into an absolute one.</summary>
 		/// <param name="szPathRelative">A relative path.</param>
 		std::u8string Absolute(const char8_t *szPathRelative);

@@ -79,8 +79,35 @@ int main(int argc, char* argv[])
 		printf("  FAIL.\n\n");
 		return 1;
 	}
-	printf("  SUCCESS.\n\n");
+	else
+		printf("  SUCCESS.\n\n");
 
+	printf("Checking if \"test.txt\" is relative...\n");
+	if (!rlSystem::Path::IsRelative(u8R"PATH(test.txt)PATH"))
+	{
+		printf("  FAIL.\n\n");
+		return 1;
+	}
+	else
+		printf("  SUCCESS.\n\n");
+
+	printf("Checking if \"test.txt\" is absolute...\n");
+	if (rlSystem::Path::IsAbsolute(u8R"PATH(test.txt)PATH"))
+	{
+		printf("  FAIL.\n\n");
+		return 1;
+	}
+	else
+		printf("  SUCCESS.\n\n");
+
+	printf("Checking if \"C:/test.txt\" is relative...\n");
+	if (rlSystem::Path::IsRelative(u8R"PATH(C:/test.txt)PATH"))
+	{
+		printf("  FAIL.\n\n");
+		return 1;
+	}
+	else
+		printf("  SUCCESS.\n\n");
 
 
 	printf("\n");
