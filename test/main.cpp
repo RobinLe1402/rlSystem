@@ -118,8 +118,11 @@ int main(int argc, char* argv[])
 
 
 	printf("Attempting to call CMD synchronously...\n");
-	rlSystem::RunApp(u8"cmd.exe", u8"/C \"echo This is the output of a call to CMD.\"",
+	rlSystem::RunApp(u8"cmd.exe", u8"/C \"echo Hello RunApp()!\"",
 		0, true, 0, false);
+
+	printf("Attempting to call CMD as console app...\n");
+	rlSystem::RunConsoleApp(u8"cmd.exe", u8"/C \"echo Hello RunConsoleApp()!\"");
 
 
 	return 0;
