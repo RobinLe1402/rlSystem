@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{a4ba46c7-2c1a-469b-9265-e9213b946d43}</ProjectGuid>
+    <ProjectGuid>{DE52EFC1-8610-44D7-A578-07B518C8FA42}</ProjectGuid>
     <RootNamespace>static</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <ProjectName>rlSystem</ProjectName>

@@ -137,7 +137,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\rlSystem.vcxproj">
-      <Project>{a4ba46c7-2c1a-469b-9265-e9213b946d43}</Project>
+      <Project>{DE52EFC1-8610-44D7-A578-07B518C8FA42}</Project>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
